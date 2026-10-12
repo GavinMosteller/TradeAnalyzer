@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TradeAnalyzer.Models;
 
 namespace TradeAnalyzer.Controllers;
-
+        
 public class HomeController : Controller
 {
     public IActionResult Index()

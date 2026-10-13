@@ -16,6 +16,123 @@ namespace TradeAnalyzer.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.12");
 
+            modelBuilder.Entity("TradeAnalyzer.Models.League", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BenchSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DefSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("DefensivePointsAllowed0")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("DefensivePointsAllowed14to20")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("DefensivePointsAllowed1to6")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("DefensivePointsAllowed21to27")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("DefensivePointsAllowed28to34")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("DefensivePointsAllowed35Plus")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("DefensivePointsAllowed7to13")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("FlexSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("KSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("NumberOfTeams")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("PointsPerDefensiveFumbleRecovery")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerDefensiveInterception")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerDefensiveSack")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerDefensiveSafety")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerDefensiveTouchdown")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerExtraPoint")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerFieldGoal0to39")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerFieldGoal40to49")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerFieldGoal50Plus")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerFumblesLost")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerInterception")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerPassingTd")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerPassingYard")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerReceivingTd")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerReceivingYard")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerReception")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerRushingTd")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PointsPerRushingYard")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("QbSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RbSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TeSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("WrSlots")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Leagues");
+                });
+
             modelBuilder.Entity("TradeAnalyzer.Models.Player", b =>
                 {
                     b.Property<int>("Id")
@@ -40,6 +157,96 @@ namespace TradeAnalyzer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players");
+                });
+
+            modelBuilder.Entity("TradeAnalyzer.Models.Projection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("DefInterceptions")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("DefTouchdowns")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("ExtraPoints")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("FieldGoals0to39")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("FieldGoals40to49")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("FieldGoals50Plus")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("FumbleRecoveries")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("FumblesLost")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Interceptions")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("LeagueId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("PassingTd")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PassingYards")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("PlayerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("PointsAllowed")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("ReceivingTd")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("ReceivingYards")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Receptions")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("RushingTd")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("RushingYards")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Sacks")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Safeties")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Week")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("Projections");
+                });
+
+            modelBuilder.Entity("TradeAnalyzer.Models.Projection", b =>
+                {
+                    b.HasOne("TradeAnalyzer.Models.Player", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
                 });
 #pragma warning restore 612, 618
         }

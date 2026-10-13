@@ -131,6 +131,47 @@ namespace TradeAnalyzer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Leagues");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BenchSlots = 6,
+                            DefSlots = 1,
+                            DefensivePointsAllowed0 = 10.0,
+                            DefensivePointsAllowed14to20 = 1.0,
+                            DefensivePointsAllowed1to6 = 7.0,
+                            DefensivePointsAllowed21to27 = 0.0,
+                            DefensivePointsAllowed28to34 = -1.0,
+                            DefensivePointsAllowed35Plus = -4.0,
+                            DefensivePointsAllowed7to13 = 4.0,
+                            FlexSlots = 1,
+                            KSlots = 1,
+                            Name = "Default League",
+                            NumberOfTeams = 12,
+                            PointsPerDefensiveFumbleRecovery = 2.0,
+                            PointsPerDefensiveInterception = 2.0,
+                            PointsPerDefensiveSack = 1.0,
+                            PointsPerDefensiveSafety = 2.0,
+                            PointsPerDefensiveTouchdown = 6.0,
+                            PointsPerExtraPoint = 1.0,
+                            PointsPerFieldGoal0to39 = 3.0,
+                            PointsPerFieldGoal40to49 = 4.0,
+                            PointsPerFieldGoal50Plus = 5.0,
+                            PointsPerFumblesLost = -2.0,
+                            PointsPerInterception = -2.0,
+                            PointsPerPassingTd = 4.0,
+                            PointsPerPassingYard = 0.040000000000000001,
+                            PointsPerReceivingTd = 6.0,
+                            PointsPerReceivingYard = 0.10000000000000001,
+                            PointsPerReception = 1.0,
+                            PointsPerRushingTd = 6.0,
+                            PointsPerRushingYard = 0.10000000000000001,
+                            QbSlots = 1,
+                            RbSlots = 2,
+                            TeSlots = 1,
+                            WrSlots = 2
+                        });
                 });
 
             modelBuilder.Entity("TradeAnalyzer.Models.Player", b =>
@@ -157,6 +198,56 @@ namespace TradeAnalyzer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ByeWeek = 5,
+                            Name = "QB1",
+                            Position = "QB",
+                            Team = "TeamA"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ByeWeek = 6,
+                            Name = "RB1",
+                            Position = "RB",
+                            Team = "TeamB"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ByeWeek = 7,
+                            Name = "WR1",
+                            Position = "WR",
+                            Team = "TeamC"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ByeWeek = 8,
+                            Name = "TE1",
+                            Position = "TE",
+                            Team = "TeamD"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ByeWeek = 9,
+                            Name = "K1",
+                            Position = "K",
+                            Team = "TeamE"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ByeWeek = 10,
+                            Name = "DEF1",
+                            Position = "DEF",
+                            Team = "TeamF"
+                        });
                 });
 
             modelBuilder.Entity("TradeAnalyzer.Models.Projection", b =>
@@ -191,9 +282,6 @@ namespace TradeAnalyzer.Migrations
 
                     b.Property<double>("Interceptions")
                         .HasColumnType("REAL");
-
-                    b.Property<int>("LeagueId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<double>("PassingTd")
                         .HasColumnType("REAL");
@@ -236,6 +324,158 @@ namespace TradeAnalyzer.Migrations
                     b.HasIndex("PlayerId");
 
                     b.ToTable("Projections");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 1.0,
+                            PassingTd = 2.0,
+                            PassingYards = 300.0,
+                            PlayerId = 1,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 2,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 1.0,
+                            RushingYards = 100.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 3,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 1.0,
+                            ReceivingYards = 80.0,
+                            Receptions = 5.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 4,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 60.0,
+                            Receptions = 4.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 3.0,
+                            FieldGoals0to39 = 2.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 5,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DefInterceptions = 1.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 6,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 3.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        });
                 });
 
             modelBuilder.Entity("TradeAnalyzer.Models.Projection", b =>

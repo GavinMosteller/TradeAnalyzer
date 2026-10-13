@@ -2,10 +2,12 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TradeAnalyzer.Migrations
 {
     /// <inheritdoc />
-    public partial class AddLeagueAndProjection : Migration
+    public partial class IntitileCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,13 +60,28 @@ namespace TradeAnalyzer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Players",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Position = table.Column<string>(type: "TEXT", nullable: false),
+                    Team = table.Column<string>(type: "TEXT", nullable: false),
+                    ByeWeek = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Players", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Projections",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     PlayerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    LeagueId = table.Column<int>(type: "INTEGER", nullable: false),
                     Week = table.Column<int>(type: "INTEGER", nullable: false),
                     PassingYards = table.Column<double>(type: "REAL", nullable: false),
                     PassingTd = table.Column<double>(type: "REAL", nullable: false),
@@ -97,6 +114,37 @@ namespace TradeAnalyzer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Leagues",
+                columns: new[] { "Id", "BenchSlots", "DefSlots", "DefensivePointsAllowed0", "DefensivePointsAllowed14to20", "DefensivePointsAllowed1to6", "DefensivePointsAllowed21to27", "DefensivePointsAllowed28to34", "DefensivePointsAllowed35Plus", "DefensivePointsAllowed7to13", "FlexSlots", "KSlots", "Name", "NumberOfTeams", "PointsPerDefensiveFumbleRecovery", "PointsPerDefensiveInterception", "PointsPerDefensiveSack", "PointsPerDefensiveSafety", "PointsPerDefensiveTouchdown", "PointsPerExtraPoint", "PointsPerFieldGoal0to39", "PointsPerFieldGoal40to49", "PointsPerFieldGoal50Plus", "PointsPerFumblesLost", "PointsPerInterception", "PointsPerPassingTd", "PointsPerPassingYard", "PointsPerReceivingTd", "PointsPerReceivingYard", "PointsPerReception", "PointsPerRushingTd", "PointsPerRushingYard", "QbSlots", "RbSlots", "TeSlots", "WrSlots" },
+                values: new object[] { 1, 6, 1, 10.0, 1.0, 7.0, 0.0, -1.0, -4.0, 4.0, 1, 1, "Default League", 12, 2.0, 2.0, 1.0, 2.0, 6.0, 1.0, 3.0, 4.0, 5.0, -2.0, -2.0, 4.0, 0.040000000000000001, 6.0, 0.10000000000000001, 1.0, 6.0, 0.10000000000000001, 1, 2, 1, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Players",
+                columns: new[] { "Id", "ByeWeek", "Name", "Position", "Team" },
+                values: new object[,]
+                {
+                    { 1, 5, "QB1", "QB", "TeamA" },
+                    { 2, 6, "RB1", "RB", "TeamB" },
+                    { 3, 7, "WR1", "WR", "TeamC" },
+                    { 4, 8, "TE1", "TE", "TeamD" },
+                    { 5, 9, "K1", "K", "TeamE" },
+                    { 6, 10, "DEF1", "DEF", "TeamF" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Projections",
+                columns: new[] { "Id", "DefInterceptions", "DefTouchdowns", "ExtraPoints", "FieldGoals0to39", "FieldGoals40to49", "FieldGoals50Plus", "FumbleRecoveries", "FumblesLost", "Interceptions", "PassingTd", "PassingYards", "PlayerId", "PointsAllowed", "ReceivingTd", "ReceivingYards", "Receptions", "RushingTd", "RushingYards", "Sacks", "Safeties", "Week" },
+                values: new object[,]
+                {
+                    { 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 300.0, 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2, 0.0, 0.0, 0.0, 0.0, 1.0, 100.0, 0.0, 0.0, 1 },
+                    { 3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3, 0.0, 1.0, 80.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4, 0.0, 0.0, 60.0, 4.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 5, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 6, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 1 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Projections_PlayerId",
                 table: "Projections",
@@ -111,6 +159,9 @@ namespace TradeAnalyzer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Projections");
+
+            migrationBuilder.DropTable(
+                name: "Players");
         }
     }
 }

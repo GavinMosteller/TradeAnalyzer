@@ -8,7 +8,6 @@ public class Projection
     public int PlayerId {get; set;}
     public Player Player {get; set;} = null!;
 
-    public int LeagueId {get; set;}
     public int Week {get; set;}
 
     //Passing

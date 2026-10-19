@@ -38,5 +38,4 @@ public class Projection
     public double DefTouchdowns {get; set;}
     public double Safeties {get; set;}
     public double PointsAllowed {get; set;}
-
 }

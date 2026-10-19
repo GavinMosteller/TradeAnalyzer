@@ -1,0 +1,25 @@
+@model List<TradeAnalyzer.Models.Player>
+
+<h1>Players</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Bye</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in Model)
+        {
+            <tr>
+                <td>@player.Name</td>
+                <td>@player.Position</td>
+                <td>@player.Team</td>
+                <td>@player.ByeWeek</td>
+            </tr>
+        }
+    </tbody>
+</table>

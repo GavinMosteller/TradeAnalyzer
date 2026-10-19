@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using TradeAnalyzer.Data;
+using TradeAnalyzer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ScoringService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=tradeanalyzer.db"));

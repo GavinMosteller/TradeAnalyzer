@@ -247,6 +247,86 @@ namespace TradeAnalyzer.Migrations
                             Name = "DEF1",
                             Position = "DEF",
                             Team = "TeamF"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ByeWeek = 5,
+                            Name = "QB2",
+                            Position = "QB",
+                            Team = "TeamG"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ByeWeek = 6,
+                            Name = "RB2",
+                            Position = "RB",
+                            Team = "TeamH"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ByeWeek = 7,
+                            Name = "WR2",
+                            Position = "WR",
+                            Team = "TeamI"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ByeWeek = 8,
+                            Name = "TE2",
+                            Position = "TE",
+                            Team = "TeamJ"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ByeWeek = 9,
+                            Name = "K2",
+                            Position = "K",
+                            Team = "TeamK"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ByeWeek = 10,
+                            Name = "DEF2",
+                            Position = "DEF",
+                            Team = "TeamL"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ByeWeek = 5,
+                            Name = "QB3",
+                            Position = "QB",
+                            Team = "TeamM"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ByeWeek = 6,
+                            Name = "RB3",
+                            Position = "RB",
+                            Team = "TeamN"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ByeWeek = 7,
+                            Name = "WR3",
+                            Position = "WR",
+                            Team = "TeamO"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ByeWeek = 8,
+                            Name = "TE3",
+                            Position = "TE",
+                            Team = "TeamP"
                         });
                 });
 
@@ -473,6 +553,256 @@ namespace TradeAnalyzer.Migrations
                             RushingTd = 0.0,
                             RushingYards = 0.0,
                             Sacks = 3.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 2.0,
+                            PassingTd = 1.0,
+                            PassingYards = 250.0,
+                            PlayerId = 7,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 1.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 8,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 2.0,
+                            RushingYards = 120.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 9,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 1.0,
+                            ReceivingYards = 90.0,
+                            Receptions = 6.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 10,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 70.0,
+                            Receptions = 3.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 4.0,
+                            FieldGoals0to39 = 1.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 11,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 12,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 2.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 3.0,
+                            PassingYards = 280.0,
+                            PlayerId = 13,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 14,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 0.0,
+                            Receptions = 0.0,
+                            RushingTd = 1.0,
+                            RushingYards = 110.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 15,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 1.0,
+                            ReceivingYards = 85.0,
+                            Receptions = 4.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
+                            Safeties = 0.0,
+                            Week = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DefInterceptions = 0.0,
+                            DefTouchdowns = 0.0,
+                            ExtraPoints = 0.0,
+                            FieldGoals0to39 = 0.0,
+                            FieldGoals40to49 = 0.0,
+                            FieldGoals50Plus = 0.0,
+                            FumbleRecoveries = 0.0,
+                            FumblesLost = 0.0,
+                            Interceptions = 0.0,
+                            PassingTd = 0.0,
+                            PassingYards = 0.0,
+                            PlayerId = 16,
+                            PointsAllowed = 0.0,
+                            ReceivingTd = 0.0,
+                            ReceivingYards = 65.0,
+                            Receptions = 2.0,
+                            RushingTd = 0.0,
+                            RushingYards = 0.0,
+                            Sacks = 0.0,
                             Safeties = 0.0,
                             Week = 1
                         });

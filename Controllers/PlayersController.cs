@@ -19,7 +19,7 @@ public class PlayersController : Controller
     
     public IActionResult Index()
     {
-        var League = _context.Leagues.First();
+        var league = _context.Leagues.First();
         
         var projections = _context.Projections
             .Include(p => p.Player)
@@ -35,11 +35,11 @@ public class PlayersController : Controller
                 Name = projection.Player.Name,
                 Position = projection.Player.Position,
                 Team = projection.Player.Team,
-                Points = _service.CalculatePoints(projection, League)
+                points = _service.CalculatePoints(projection, league)
             });
         }
 
-        rows = rows.OrderByDescending(r => r.Points).ToList();
+        rows = rows.OrderByDescending(r => r.points).ToList();
 
         return View(rows);
     }

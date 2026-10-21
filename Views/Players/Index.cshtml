@@ -1,4 +1,4 @@
-@model List<TradeAnalyzer.Models.Player>
+@model List<TradeAnalyzer.Models.PlayerScoreViewModel>
 
 <h1>Players</h1>
 
@@ -8,17 +8,17 @@
             <th>Name</th>
             <th>Position</th>
             <th>Team</th>
-            <th>Bye</th>
+            <th>Projected Points</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var player in Model)
+        @foreach (var row in Model)
         {
             <tr>
-                <td>@player.Name</td>
-                <td>@player.Position</td>
-                <td>@player.Team</td>
-                <td>@player.ByeWeek</td>
+                <td>@row.Name</td>
+                <td>@row.Position</td>
+                <td>@row.Team</td>
+                <td>@row.points.ToString("F1")</td>
             </tr>
         }
     </tbody>

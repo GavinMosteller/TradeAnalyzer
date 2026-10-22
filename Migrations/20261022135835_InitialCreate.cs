@@ -7,7 +7,7 @@
 namespace TradeAnalyzer.Migrations
 {
     /// <inheritdoc />
-    public partial class IntitileCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,6 +76,26 @@ namespace TradeAnalyzer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FantasyTeams",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    LeagueId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FantasyTeams", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FantasyTeams_Leagues_LeagueId",
+                        column: x => x.LeagueId,
+                        principalTable: "Leagues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Projections",
                 columns: table => new
                 {
@@ -114,6 +134,32 @@ namespace TradeAnalyzer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RosterSpots",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FantasyTeamId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PlayerId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RosterSpots", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RosterSpots_FantasyTeams_FantasyTeamId",
+                        column: x => x.FantasyTeamId,
+                        principalTable: "FantasyTeams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RosterSpots_Players_PlayerId",
+                        column: x => x.PlayerId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Leagues",
                 columns: new[] { "Id", "BenchSlots", "DefSlots", "DefensivePointsAllowed0", "DefensivePointsAllowed14to20", "DefensivePointsAllowed1to6", "DefensivePointsAllowed21to27", "DefensivePointsAllowed28to34", "DefensivePointsAllowed35Plus", "DefensivePointsAllowed7to13", "FlexSlots", "KSlots", "Name", "NumberOfTeams", "PointsPerDefensiveFumbleRecovery", "PointsPerDefensiveInterception", "PointsPerDefensiveSack", "PointsPerDefensiveSafety", "PointsPerDefensiveTouchdown", "PointsPerExtraPoint", "PointsPerFieldGoal0to39", "PointsPerFieldGoal40to49", "PointsPerFieldGoal50Plus", "PointsPerFumblesLost", "PointsPerInterception", "PointsPerPassingTd", "PointsPerPassingYard", "PointsPerReceivingTd", "PointsPerReceivingYard", "PointsPerReception", "PointsPerRushingTd", "PointsPerRushingYard", "QbSlots", "RbSlots", "TeSlots", "WrSlots" },
@@ -129,7 +175,26 @@ namespace TradeAnalyzer.Migrations
                     { 3, 7, "WR1", "WR", "TeamC" },
                     { 4, 8, "TE1", "TE", "TeamD" },
                     { 5, 9, "K1", "K", "TeamE" },
-                    { 6, 10, "DEF1", "DEF", "TeamF" }
+                    { 6, 10, "DEF1", "DEF", "TeamF" },
+                    { 7, 5, "QB2", "QB", "TeamG" },
+                    { 8, 6, "RB2", "RB", "TeamH" },
+                    { 9, 7, "WR2", "WR", "TeamI" },
+                    { 10, 8, "TE2", "TE", "TeamJ" },
+                    { 11, 9, "K2", "K", "TeamK" },
+                    { 12, 10, "DEF2", "DEF", "TeamL" },
+                    { 13, 5, "QB3", "QB", "TeamM" },
+                    { 14, 6, "RB3", "RB", "TeamN" },
+                    { 15, 7, "WR3", "WR", "TeamO" },
+                    { 16, 8, "TE3", "TE", "TeamP" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FantasyTeams",
+                columns: new[] { "Id", "LeagueId", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Team One" },
+                    { 2, 1, "Team Two" }
                 });
 
             migrationBuilder.InsertData(
@@ -142,12 +207,56 @@ namespace TradeAnalyzer.Migrations
                     { 3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3, 0.0, 1.0, 80.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1 },
                     { 4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4, 0.0, 0.0, 60.0, 4.0, 0.0, 0.0, 0.0, 0.0, 1 },
                     { 5, 0.0, 0.0, 3.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1 },
-                    { 6, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 1 }
+                    { 6, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.0, 0.0, 1 },
+                    { 7, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 1.0, 250.0, 7, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 8, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 8, 0.0, 0.0, 0.0, 0.0, 2.0, 120.0, 0.0, 0.0, 1 },
+                    { 9, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 9, 0.0, 1.0, 90.0, 6.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 10, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10, 0.0, 0.0, 70.0, 3.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 11, 0.0, 0.0, 4.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 12, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 12, 17.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 1 },
+                    { 13, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.0, 280.0, 13, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 14, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 14, 0.0, 0.0, 0.0, 0.0, 1.0, 110.0, 0.0, 0.0, 1 },
+                    { 15, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15, 0.0, 1.0, 85.0, 4.0, 0.0, 0.0, 0.0, 0.0, 1 },
+                    { 16, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 16, 0.0, 0.0, 65.0, 2.0, 0.0, 0.0, 0.0, 0.0, 1 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "RosterSpots",
+                columns: new[] { "Id", "FantasyTeamId", "PlayerId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 1, 2 },
+                    { 3, 1, 3 },
+                    { 4, 1, 4 },
+                    { 5, 1, 5 },
+                    { 6, 1, 6 },
+                    { 7, 2, 7 },
+                    { 8, 2, 8 },
+                    { 9, 2, 9 },
+                    { 10, 2, 10 },
+                    { 11, 2, 11 },
+                    { 12, 2, 12 }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FantasyTeams_LeagueId",
+                table: "FantasyTeams",
+                column: "LeagueId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projections_PlayerId",
                 table: "Projections",
+                column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RosterSpots_FantasyTeamId",
+                table: "RosterSpots",
+                column: "FantasyTeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RosterSpots_PlayerId",
+                table: "RosterSpots",
                 column: "PlayerId");
         }
 
@@ -155,13 +264,19 @@ namespace TradeAnalyzer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Leagues");
-
-            migrationBuilder.DropTable(
                 name: "Projections");
 
             migrationBuilder.DropTable(
+                name: "RosterSpots");
+
+            migrationBuilder.DropTable(
+                name: "FantasyTeams");
+
+            migrationBuilder.DropTable(
                 name: "Players");
+
+            migrationBuilder.DropTable(
+                name: "Leagues");
         }
     }
 }

@@ -8,11 +8,11 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
 
     public DbSet<Player> Players => Set<Player>();
-
     public DbSet<League> Leagues => Set<League>();
-
+    public DbSet<FantasyTeam> FantasyTeams => Set<FantasyTeam>();
     public DbSet<Projection> Projections => Set<Projection>();
-    
+    public DbSet<RosterSpot> RosterSpots => Set<RosterSpot>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -40,6 +40,11 @@ public class AppDbContext : DbContext
             new League { Id = 1, Name = "Default League", NumberOfTeams = 12 }
         );
 
+        modelBuilder.Entity<FantasyTeam>().HasData(
+            new FantasyTeam { Id = 1, Name = "Team One", LeagueId = 1},
+            new FantasyTeam { Id = 2, Name = "Team Two", LeagueId = 1}
+        );
+
         modelBuilder.Entity<Projection>().HasData(
             new Projection { Id = 1, PlayerId = 1, Week = 1, PassingYards = 300, PassingTd = 2, Interceptions = 1 },
             new Projection { Id = 2, PlayerId = 2, Week = 1, RushingYards = 100, RushingTd = 1, FumblesLost = 0 },
@@ -52,11 +57,26 @@ public class AppDbContext : DbContext
             new Projection { Id = 9, PlayerId = 9, Week = 1, ReceivingYards = 90, Receptions = 6, ReceivingTd = 1 },
             new Projection { Id = 10, PlayerId = 10, Week = 1, ReceivingYards = 70, Receptions = 3, ReceivingTd = 0 },
             new Projection { Id = 11, PlayerId = 11, Week = 1, ExtraPoints = 4, FieldGoals0to39 = 1 },
-            new Projection { Id = 12, PlayerId = 12, Week = 1, Sacks = 2, DefInterceptions = 0 },
+            new Projection { Id = 12, PlayerId = 12, Week = 1, Sacks = 2, DefInterceptions = 0, PointsAllowed = 17 },
             new Projection { Id = 13, PlayerId = 13, Week = 1, PassingYards = 280, PassingTd = 3, Interceptions = 0 },
             new Projection { Id = 14, PlayerId = 14, Week = 1, RushingYards = 110, RushingTd = 1, FumblesLost = 0 },
             new Projection { Id = 15, PlayerId = 15, Week = 1, ReceivingYards = 85, Receptions = 4, ReceivingTd = 1 },
             new Projection { Id = 16, PlayerId = 16, Week = 1, ReceivingYards = 65, Receptions = 2, ReceivingTd = 0 }
+        );
+
+        modelBuilder.Entity<RosterSpot>().HasData(
+            new RosterSpot { Id = 1, FantasyTeamId = 1, PlayerId = 1},
+            new RosterSpot { Id = 2, FantasyTeamId = 1, PlayerId = 2},
+            new RosterSpot { Id = 3, FantasyTeamId = 1, PlayerId = 3},
+            new RosterSpot { Id = 4, FantasyTeamId = 1, PlayerId = 4},
+            new RosterSpot { Id = 5, FantasyTeamId = 1, PlayerId = 5},
+            new RosterSpot { Id = 6, FantasyTeamId = 1, PlayerId = 6},
+            new RosterSpot { Id = 7, FantasyTeamId = 2, PlayerId = 7},
+            new RosterSpot { Id = 8, FantasyTeamId = 2, PlayerId = 8},
+            new RosterSpot { Id = 9, FantasyTeamId = 2, PlayerId = 9},
+            new RosterSpot { Id = 10, FantasyTeamId = 2, PlayerId = 10},
+            new RosterSpot { Id = 11, FantasyTeamId = 2, PlayerId = 11},
+            new RosterSpot { Id = 12, FantasyTeamId = 2, PlayerId = 12}
         );
     }
 }

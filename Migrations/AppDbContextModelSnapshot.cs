@@ -16,6 +16,40 @@ namespace TradeAnalyzer.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.12");
 
+            modelBuilder.Entity("TradeAnalyzer.Models.FantasyTeam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LeagueId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LeagueId");
+
+                    b.ToTable("FantasyTeams");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            LeagueId = 1,
+                            Name = "Team One"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            LeagueId = 1,
+                            Name = "Team Two"
+                        });
+                });
+
             modelBuilder.Entity("TradeAnalyzer.Models.League", b =>
                 {
                     b.Property<int>("Id")
@@ -696,7 +730,7 @@ namespace TradeAnalyzer.Migrations
                             PassingTd = 0.0,
                             PassingYards = 0.0,
                             PlayerId = 12,
-                            PointsAllowed = 0.0,
+                            PointsAllowed = 17.0,
                             ReceivingTd = 0.0,
                             ReceivingYards = 0.0,
                             Receptions = 0.0,
@@ -808,6 +842,112 @@ namespace TradeAnalyzer.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TradeAnalyzer.Models.RosterSpot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FantasyTeamId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlayerId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FantasyTeamId");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("RosterSpots");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FantasyTeamId = 1,
+                            PlayerId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FantasyTeamId = 1,
+                            PlayerId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FantasyTeamId = 1,
+                            PlayerId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FantasyTeamId = 1,
+                            PlayerId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FantasyTeamId = 1,
+                            PlayerId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            FantasyTeamId = 1,
+                            PlayerId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            FantasyTeamId = 2,
+                            PlayerId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FantasyTeamId = 2,
+                            PlayerId = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            FantasyTeamId = 2,
+                            PlayerId = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            FantasyTeamId = 2,
+                            PlayerId = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            FantasyTeamId = 2,
+                            PlayerId = 11
+                        },
+                        new
+                        {
+                            Id = 12,
+                            FantasyTeamId = 2,
+                            PlayerId = 12
+                        });
+                });
+
+            modelBuilder.Entity("TradeAnalyzer.Models.FantasyTeam", b =>
+                {
+                    b.HasOne("TradeAnalyzer.Models.League", "League")
+                        .WithMany()
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("League");
+                });
+
             modelBuilder.Entity("TradeAnalyzer.Models.Projection", b =>
                 {
                     b.HasOne("TradeAnalyzer.Models.Player", "Player")
@@ -815,6 +955,25 @@ namespace TradeAnalyzer.Migrations
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("TradeAnalyzer.Models.RosterSpot", b =>
+                {
+                    b.HasOne("TradeAnalyzer.Models.FantasyTeam", "FantasyTeam")
+                        .WithMany()
+                        .HasForeignKey("FantasyTeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TradeAnalyzer.Models.Player", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FantasyTeam");
 
                     b.Navigation("Player");
                 });

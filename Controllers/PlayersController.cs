@@ -35,11 +35,11 @@ public class PlayersController : Controller
                 Name = projection.Player.Name,
                 Position = projection.Player.Position,
                 Team = projection.Player.Team,
-                points = _service.CalculatePoints(projection, league)
+                Points = _service.CalculatePoints(projection, league)
             });
         }
 
-        rows = rows.OrderByDescending(r => r.points).ToList();
+        rows = rows.OrderByDescending(r => r.Points).ToList();
 
         return View(rows);
     }

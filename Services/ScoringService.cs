@@ -6,40 +6,40 @@ public class ScoringService
 {
     public double CalculatePoints(Projection p, League l)
     {
-        double points = 0;
+        double Points = 0;
 
         //Passing
-        points += p.PassingYards * l.PointsPerPassingYard;
-        points += p.PassingTd * l.PointsPerPassingTd;
-        points += p.Interceptions * l.PointsPerInterception;
+        Points += p.PassingYards * l.PointsPerPassingYard;
+        Points += p.PassingTd * l.PointsPerPassingTd;
+        Points += p.Interceptions * l.PointsPerInterception;
 
         //Rushing
-        points += p.RushingYards * l.PointsPerRushingYard;
-        points += p.RushingTd * l.PointsPerRushingTd;
-        points += p.FumblesLost * l.PointsPerFumblesLost;
+        Points += p.RushingYards * l.PointsPerRushingYard;
+        Points += p.RushingTd * l.PointsPerRushingTd;
+        Points += p.FumblesLost * l.PointsPerFumblesLost;
 
         //Receiving
-        points += p.ReceivingYards * l.PointsPerReceivingYard;
-        points += p.Receptions * l.PointsPerReception;
-        points += p.ReceivingTd * l.PointsPerReceivingTd;
+        Points += p.ReceivingYards * l.PointsPerReceivingYard;
+        Points += p.Receptions * l.PointsPerReception;
+        Points += p.ReceivingTd * l.PointsPerReceivingTd;
 
         //Kicking
-        points += p.ExtraPoints * l.PointsPerExtraPoint;
-        points += p.FieldGoals0to39 * l.PointsPerFieldGoal0to39;
-        points += p.FieldGoals40to49 * l.PointsPerFieldGoal40to49;
-        points += p.FieldGoals50Plus * l.PointsPerFieldGoal50Plus;
+        Points += p.ExtraPoints * l.PointsPerExtraPoint;
+        Points += p.FieldGoals0to39 * l.PointsPerFieldGoal0to39;
+        Points += p.FieldGoals40to49 * l.PointsPerFieldGoal40to49;
+        Points += p.FieldGoals50Plus * l.PointsPerFieldGoal50Plus;
 
         //Defense
-        points += p.Sacks * l.PointsPerDefensiveSack;
-        points += p.DefInterceptions * l.PointsPerDefensiveInterception;
-        points += p.FumbleRecoveries * l.PointsPerDefensiveFumbleRecovery;
-        points += p.DefTouchdowns * l.PointsPerDefensiveTouchdown;
-        points += p.Safeties * l.PointsPerDefensiveSafety;
+        Points += p.Sacks * l.PointsPerDefensiveSack;
+        Points += p.DefInterceptions * l.PointsPerDefensiveInterception;
+        Points += p.FumbleRecoveries * l.PointsPerDefensiveFumbleRecovery;
+        Points += p.DefTouchdowns * l.PointsPerDefensiveTouchdown;
+        Points += p.Safeties * l.PointsPerDefensiveSafety;
 
         //Points allowed
         if (p.Player.Position == "DEF")
         {
-            points += Math.Round(p.PointsAllowed) switch
+            Points += Math.Round(p.PointsAllowed) switch
             {
                 0 => l.DefensivePointsAllowed0,
                 >= 1 and <= 6 => l.DefensivePointsAllowed1to6,
@@ -51,6 +51,6 @@ public class ScoringService
             };
         }
         
-        return points;
+        return Points;
     }
 }

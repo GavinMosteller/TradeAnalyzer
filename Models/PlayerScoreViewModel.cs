@@ -6,5 +6,5 @@ public class PlayerScoreViewModel
     public string Name {get; set;} = "";
     public string Position {get; set;} = "";
     public string Team {get; set;} = "";
-    public double points {get; set;}
+    public double Points {get; set;}
 }

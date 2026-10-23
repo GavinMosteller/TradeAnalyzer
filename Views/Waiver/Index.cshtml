@@ -1,0 +1,25 @@
+@model List<TradeAnalyzer.Models.WaiverViewModel>
+
+<h1>Free Agents</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Projected Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            <tr>
+                <td>@row.Name</td>
+                <td>@row.Position</td>
+                <td>@row.Team</td>
+                <td>@row.Points.ToString("F1")</td>
+            </tr>
+        }
+    </tbody>
+</table>

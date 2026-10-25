@@ -26,17 +26,37 @@ public class WaiverController : Controller
             .ToList();
         
         var rosteredIds = _context.RosterSpots
-            .Select(pi => pi.PlayerId)
+            .Select(rs => rs.PlayerId)
             .ToList();
         
         var filteredFreeAgent = projections
             .Where(p => !rosteredIds.Contains(p.PlayerId))
             .ToList();
-    
+
+        var myPlayerIds = _context.RosterSpots
+            .Where(rs => rs.FantasyTeamId == 1)
+            .Select(rs => rs.PlayerId)
+            .ToList();
+        
+        var myProjections = projections
+            .Where(p => myPlayerIds.Contains(p.PlayerId))
+            .ToList();
+
         var rows = new List<WaiverViewModel>();
 
         foreach (var projection in filteredFreeAgent)
         {
+            var points = _service.CalculatePoints(projection, league);
+
+            var samePosition = myProjections  
+                .Where(mp => mp.Player.Position == projection.Player.Position)
+                .ToList();
+            
+            var weakest = samePosition
+                .Select(mp => _service.CalculatePoints(mp, league))
+                .DefaultIfEmpty(0)
+                .Min();
+
             rows.Add(new WaiverViewModel
             {
                 Id = projection.Player.Id,

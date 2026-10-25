@@ -46,6 +46,7 @@ public class WaiverController : Controller
 
         foreach (var projection in filteredFreeAgent)
         {
+            
             var points = _service.CalculatePoints(projection, league);
 
             var samePosition = myProjections  
@@ -53,9 +54,9 @@ public class WaiverController : Controller
                 .ToList();
             
             var weakest = samePosition
-                .Select(mp => _service.CalculatePoints(mp, league))
-                .DefaultIfEmpty(0)
-                .Min();
+                    .Select(mp => _service.CalculatePoints(mp, league))
+                    .DefaultIfEmpty(0)
+                    .Min();
 
             rows.Add(new WaiverViewModel
             {
@@ -63,11 +64,12 @@ public class WaiverController : Controller
                 Name = projection.Player.Name,
                 Position = projection.Player.Position,
                 Team = projection.Player.Team,
-                Points = _service.CalculatePoints(projection, league)
+                Points = points,
+                GainOverCurrent = points - weakest
             });
         }
 
-        rows = rows.OrderByDescending(r => r.Points).ToList();
+        rows = rows.OrderByDescending(r => r.GainOverCurrent).ToList();
 
         return View(rows);
     }

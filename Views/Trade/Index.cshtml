@@ -2,14 +2,20 @@
 
 <h1>Trade Form </h1>
 
+<form method="post" asp-action="Result">
+
+<h2>My Players</h2>    
 <table>
     <thead>
-    <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Team</th>
-    </tr>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Points</th>
+            <th>Give</th>
+        </tr>
     </thead>
+    
     <tbody>
     @foreach(var row in Model.MyPlayers)
     {
@@ -17,9 +23,38 @@
             <td>@row.Name</td>
             <td>@row.Position</td>
             <td>@row.Team</td>
+            <td>@row.Points.ToString("F1")</td>
+            <td><input type="checkbox" name="givingIds" value="@row.Id" /></td>
         </tr>
     }
     </tbody>
-    @*TODO: Add checkbox column, Duplicate the table for the other team, 
-    Wrap both tables in one form, Add a points column*@
 </table>
+
+<h2>Their Players</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Points</th>
+            <th>Get</th>            
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach(var row in Model.TheirPlayers)
+    {
+        <tr>
+            <td>@row.Name</td>
+            <td>@row.Position</td>
+            <td>@row.Team</td>
+            <td>@row.Points.ToString("F1")</td>
+            <td><input type="checkbox" name="receivingIds" value="@row.Id" /></td>
+        </tr>
+    }
+    </tbody>
+
+</table>
+<button type="submit">Analyze Trade</button>
+</form>

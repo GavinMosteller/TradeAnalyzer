@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TradeAnalyzer.Data;
 using TradeAnalyzer.Models;
@@ -82,5 +83,16 @@ public class TradeController : Controller
         };
 
         return View(form);
+    }
+
+    [HttpPost]
+    public IActionResult Result(List<int> selectedPlayers)
+    {
+        var selectedProjected = _context.Projections
+            .Where(p => selectedPlayers.Contains(p.PlayerId))
+            .Include(p => p.Player)
+            .ToList();
+
+        return View();
     }
 }

@@ -1,0 +1,25 @@
+﻿@model TradeFormViewModel
+
+<h1>Trade Form </h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Team</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var row in Model.MyPlayers)
+    {
+        <tr>
+            <td>@row.Name</td>
+            <td>@row.Position</td>
+            <td>@row.Team</td>
+        </tr>
+    }
+    </tbody>
+    @*TODO: Add checkbox column, Duplicate the table for the other team, 
+    Wrap both tables in one form, Add a points column*@
+</table>

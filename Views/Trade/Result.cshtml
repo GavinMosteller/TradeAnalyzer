@@ -1,0 +1,66 @@
+﻿@model TradeResultViewModel
+
+<h1>Trade Results</h1>
+
+<h2>Giving Players</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Team</th>
+        <th>Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model.Giving)
+    {
+        <tr>
+            <td>@row.Name</td>
+            <td>@row.Position</td>
+            <td>@row.Team</td>
+            <td>@row.Points.ToString("F1")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<p>Points Given: @Model.PointsGiven.ToString("F1")</p>
+
+<h2>Receiving Players</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Team</th>
+        <th>Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model.Receiving)
+    {
+        <tr>
+            <td>@row.Name</td>
+            <td>@row.Position</td>
+            <td>@row.Team</td>
+            <td>@row.Points.ToString("F1")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+<p>Points Received: @Model.PointsReceived.ToString("F1")</p>
+
+<h2>Net: @Model.Net.ToString("+0.0;-0.0;0.0")</h2>
+
+@if (Model.Net > 0)
+{
+    <p>This trade favors you.</p>
+}
+else if (Model.Net < 0)
+{
+    <p>This trade favors them.</p>
+}
+else
+{
+    <p>This trade is even.</p>
+}

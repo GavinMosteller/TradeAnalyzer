@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TradeAnalyzer.Data;
 using TradeAnalyzer.Models;
@@ -32,7 +31,7 @@ public class TradeController : Controller
             .Select(rs => rs.PlayerId)
             .ToList();
 
-        var theirPlayerIdsIds = _context.RosterSpots
+        var theirPlayerIds = _context.RosterSpots
             .Where(rs => rs.FantasyTeamId == 2)
             .Select(rs => rs.PlayerId)
             .ToList();
@@ -42,7 +41,7 @@ public class TradeController : Controller
             .ToList();
         
         var theirProjections = projections
-            .Where(p => theirPlayerIdsIds.Contains(p.PlayerId))
+            .Where(p => theirPlayerIds.Contains(p.PlayerId))
             .ToList();
         
         var myRows = new List<PlayerScoreViewModel>();
@@ -86,13 +85,56 @@ public class TradeController : Controller
     }
 
     [HttpPost]
-    public IActionResult Result(List<int> selectedPlayers)
+    public IActionResult Result(List<int> givingIds, List<int> receivingIds)
     {
-        var selectedProjected = _context.Projections
-            .Where(p => selectedPlayers.Contains(p.PlayerId))
+        var league = _context.Leagues.First();
+        
+        var givingProjections = _context.Projections
+            .Where(p => givingIds.Contains(p.PlayerId))
             .Include(p => p.Player)
             .ToList();
 
-        return View();
+        var receivingProjections = _context.Projections
+            .Where(p => receivingIds.Contains(p.PlayerId))
+            .Include(p => p.Player)
+            .ToList();
+
+        var givingRows = new List<PlayerScoreViewModel>();
+        var receivingRows = new List<PlayerScoreViewModel>();
+
+        foreach (var projection in givingProjections)
+        {
+            var points = _service.CalculatePoints(projection, league);
+
+            givingRows.Add(new PlayerScoreViewModel
+            {
+                Id = projection.Player.Id,
+                Name = projection.Player.Name,
+                Position = projection.Player.Position,
+                Team = projection.Player.Team,
+                Points = points
+            });
+        }
+
+        foreach (var projection in receivingProjections)
+        {
+            var points = _service.CalculatePoints(projection, league);
+
+            receivingRows.Add(new PlayerScoreViewModel
+            {
+                Id = projection.Player.Id,
+                Name = projection.Player.Name,
+                Position = projection.Player.Position,
+                Team = projection.Player.Team,
+                Points = points
+            });
+        }
+
+        var result = new TradeResultViewModel
+        {
+            Giving = givingRows,
+            Receiving = receivingRows
+        };
+        return View(result);
     }
 }
